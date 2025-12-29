@@ -1,0 +1,10 @@
+Env.class
+Main.class
+TradeCtrl.class
+AssetCtrl.class
+CopyTradingCtrl.class
+PrivateWsCtrl.class
+MarketCtrl.class
+SignatureUtil.class
+Constants.class
+AccountCtrl.class
