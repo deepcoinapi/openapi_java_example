@@ -2,7 +2,7 @@
  * Public WebSocket Example Main
  * 
  * 订阅公有行情WebSocket示例
- * 参考文档: https://test-www.goodtest.cc/docs/zh/publicWS/public
+ * 参考文档: https://www.deepcoin.com/docs/zh/publicWS/public
  */
 public class PublicWSMain {
 
@@ -37,7 +37,7 @@ public class PublicWSMain {
         }
 
         try {
-            PublicWSClient client = new PublicWSClient(url);
+            WSClient client = new WSClient(url);
             System.out.println("Connecting to: " + url);
             client.connectBlocking();
 
@@ -45,12 +45,13 @@ public class PublicWSMain {
             Thread.sleep(1000);
 
             // Example: Subscribe to trade details (成交明细)
-            // FilterValue format: $ExchangeID_$InstrumentID_$Period
-            // ExchangeID: DEEPCOIN
-            // InstrumentID: BTC-USDT-SWAP (for swap) or BTC-USDT (for spot)
+            // FilterValue format (see docs): $ExchangeID_$InstrumentID_$Period
+            // e.g. DeepCoin_BTCUSDT_1m
+            // ExchangeID: DeepCoin
+            // InstrumentID: e.g. BTCUSDT / BCHUSDT
             // Period: 1m, 5m, 15m, 30m, 1h, 4h, 12h, 1d, 1w, 1o, 1y
-            String exchangeID = "DEEPCOIN";
-            String instrumentId = "swap".equals(type) ? "BTC-USDT-SWAP" : "BTC-USDT";
+            String exchangeID = "DeepCoin";
+            String instrumentId = "BTCUSDT";
             String period = "1m"; // 1 minute
             String filterValue = exchangeID + "_" + instrumentId + "_" + period;
             String topicID = "2"; // 2: 成交明细 (trade details)
@@ -59,10 +60,7 @@ public class PublicWSMain {
             System.out.println("  FilterValue: " + filterValue);
             System.out.println("  TopicID: " + topicID);
             client.subscribe(filterValue, topicID, -1); // -1: resume from server's latest position
-
             System.out.println("WebSocket connection established. Waiting for messages...");
-            System.out.println("Press Ctrl+C to exit.");
-
             // Keep the main thread running
             Thread.currentThread().join();
         } catch (InterruptedException e) {

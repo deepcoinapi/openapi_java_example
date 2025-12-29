@@ -1,7 +1,7 @@
 /**
  * WebSocket Example Main
  */
-public class Main {
+public class PrivateMain {
 
     private static final String WS_URL = "wss://test-wss.goodtest.cc/v1/private?listenKey=3f8021a44a262e69344d5c522b613006";
 
