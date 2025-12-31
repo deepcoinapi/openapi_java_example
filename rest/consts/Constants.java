@@ -62,6 +62,9 @@ public class Constants {
     public static final String TRADE_SWAP_CANCEL_ALL = "/deepcoin/trade/swap/cancel-all";
     public static final String TRADE_REPLACE_ORDER_SLTP = "/deepcoin/trade/replace-order-sltp";
     public static final String TRADE_REPLACE_POS_SLTP = "/deepcoin/trade/replace-pos-sltp";
+     public static final String TRADE_TRIGGER_ORDER = "/deepcoin/trade/trigger-order";
+     public static final String TRADE_CANCEL_POSITION_SLTP = "/deepcoin/trade/cancel-position-sltp";
+     public static final String TRADE_TRACE_ORDER = "/deepcoin/trade/trace-order";
 
     // Copy Trading Endpoints
     public static final String COPYTRADING_LEADER_SETTINGS = "/deepcoin/copytrading/leader-settings";
@@ -85,4 +88,7 @@ public class Constants {
     public static final String INTERNAL_TRANSFER_SUPPORT = "/deepcoin/internal-transfer/support";
     public static final String INTERNAL_TRANSFER = "/deepcoin/internal-transfer";
     public static final String INTERNAL_TRANSFER_HISTORY = "/deepcoin/internal-transfer/history-order";
+ 
+     // Asset Transfer Endpoint
+     public static final String ASSET_TRANSFER = "/deepcoin/asset/transfer";
 }

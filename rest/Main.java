@@ -1,4 +1,5 @@
 import org.yaml.snakeyaml.Yaml;
+
 import java.io.*;
 import java.util.*;
 
@@ -42,10 +43,10 @@ public class Main {
             @SuppressWarnings("unchecked")
             Map<String, String> apiConfig = (Map<String, String>) config.get("api");
             return new Env(
-                apiConfig.get("url"),
-                apiConfig.get("key"),
-                apiConfig.get("secret_key"),
-                apiConfig.get("passphrase")
+                    apiConfig.get("url"),
+                    apiConfig.get("key"),
+                    apiConfig.get("secret_key"),
+                    apiConfig.get("passphrase")
             );
         } catch (Exception e) {
             throw new RuntimeException("Failed to read config: " + e.getMessage(), e);
@@ -63,8 +64,8 @@ public class Main {
         Map<String, Runnable> handlers = new HashMap<>();
 
         // Account APIs
-        handlers.put("getAccountBalance", account::getAccountBalance);
-        handlers.put("getAccountBills", account::getAccountBills);
+        handlers.put("getAccountBalance", account::getAccountBalance);      //获取资金账户余额
+        handlers.put("getAccountBills", account::getAccountBills);          //获取资金流水
         handlers.put("setLeverage", account::setLeverage);
         handlers.put("getPositions", account::getPositions);
 
@@ -93,6 +94,9 @@ public class Main {
         handlers.put("swapCalcelAllOrders", trade::swapCancelAllOrders);
         handlers.put("swapReplaceOrderSlTp", trade::swapReplaceOrderSlTp);
         handlers.put("swapReplacePositionSlTp", trade::swapReplacePositionSlTp);
+        handlers.put("trigger-order", trade::triggerOrder);
+        handlers.put("cancel-position-sltp", trade::cancelPositionSlTp);
+        handlers.put("trace-order", trade::traceOrder);
 
         // CopyTrading APIs
         handlers.put("leader-settings", copytrading::leaderSettings);
@@ -114,6 +118,7 @@ public class Main {
         handlers.put("getInternalTransferSupport", asset::getInternalTransferSupport);
         handlers.put("postInternalTransfer", asset::postInternalTransfer);
         handlers.put("getInternalTransferHistory", asset::getInternalTransferHistory);
+        handlers.put("assetTransfer", asset::transfer);
 
         return handlers;
     }

@@ -139,4 +139,71 @@ public class TradeCtrl {
         req.put("volume", 0);
         SignatureUtil.doHttp(env.getUrl() + Constants.TRADE_REPLACE_POS_SLTP, Constants.HTTP_METHOD_POST, Constants.TRADE_REPLACE_POS_SLTP, gson.toJson(req), env);
     }
+
+    /**
+     * 条件单下单：POST /deepcoin/trade/trigger-order
+     */
+    public void triggerOrder() {
+        Map<String, Object> req = new HashMap<>();
+        req.put("instId", "BTC-USDT-SWAP");
+        req.put("productGroup", "SwapU");
+        req.put("sz", "1");
+        req.put("side", Constants.SIDE_BUY);
+        req.put("posSide", Constants.POSITION_SIDE_LONG);
+        req.put("price", "50000");
+        req.put("isCrossMargin", "0");
+        req.put("orderType", Constants.ORDER_TYPE_LIMIT);
+        req.put("triggerPrice", "49000");
+        req.put("triggerPxType", "last");
+        req.put("mrgPosition", Constants.MERGE);
+        req.put("tdMode", Constants.ISOLATED);
+        req.put("tpTriggerPx", "51000");
+        req.put("tpTriggerPxType", "last");
+        req.put("tpOrdPx", "-1");
+        req.put("slTriggerPx", "48000");
+        req.put("slTriggerPxType", "last");
+        req.put("slOrdPx", "-1");
+        SignatureUtil.doHttp(
+                env.getUrl() + Constants.TRADE_TRIGGER_ORDER,
+                Constants.HTTP_METHOD_POST,
+                Constants.TRADE_TRIGGER_ORDER,
+                gson.toJson(req),
+                env
+        );
+    }
+
+    /**
+     * 取消持仓止盈止损：POST /deepcoin/trade/cancel-position-sltp
+     */
+    public void cancelPositionSlTp() {
+        Map<String, Object> req = new HashMap<>();
+        req.put("instType", Constants.SPOT);
+        req.put("instId", "BTC-USDT");
+        req.put("ordId", "1000762096073860");
+        SignatureUtil.doHttp(
+                env.getUrl() + Constants.TRADE_CANCEL_POSITION_SLTP,
+                Constants.HTTP_METHOD_POST,
+                Constants.TRADE_CANCEL_POSITION_SLTP,
+                gson.toJson(req),
+                env
+        );
+    }
+
+    /**
+     * 追踪出场委托单：POST /deepcoin/trade/trace-order
+     */
+    public void traceOrder() {
+        Map<String, Object> req = new HashMap<>();
+        req.put("instId", "BTC-USDT-SWAP");
+        req.put("retracePoint", "1000");
+        req.put("triggerPrice", "-1");
+        req.put("posSide", Constants.POSITION_SIDE_LONG);
+        SignatureUtil.doHttp(
+                env.getUrl() + Constants.TRADE_TRACE_ORDER,
+                Constants.HTTP_METHOD_POST,
+                Constants.TRADE_TRACE_ORDER,
+                gson.toJson(req),
+                env
+        );
+    }
 }

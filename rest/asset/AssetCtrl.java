@@ -43,4 +43,24 @@ public class AssetCtrl {
         req.put("receiverUID", "36007196");
         SignatureUtil.doHttp(env.getUrl() + Constants.INTERNAL_TRANSFER, Constants.HTTP_METHOD_POST, Constants.INTERNAL_TRANSFER, gson.toJson(req), env);
     }
+
+    /**
+     * 资金划转：POST /deepcoin/asset/transfer
+     * 对应文档“资金划转”接口
+     */
+    public void transfer() {
+        Map<String, Object> req = new HashMap<>();
+        req.put("currency_id", "USDT");
+        req.put("amount", "100.00");
+        req.put("from_id", 7);
+        req.put("to_id", 1);
+        req.put("uid", 36020176);
+        SignatureUtil.doHttp(
+                env.getUrl() + Constants.ASSET_TRANSFER,
+                Constants.HTTP_METHOD_POST,
+                Constants.ASSET_TRANSFER,
+                gson.toJson(req),
+                env
+        );
+    }
 }
