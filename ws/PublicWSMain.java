@@ -7,9 +7,9 @@
 public class PublicWSMain {
 
     // 合约WebSocket地址
-    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/public/swap?platform=api";
+    private static final String SWAP_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/public/swap?platform=api&version=v2";
     // 现货WebSocket地址
-    private static final String SPOT_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/public/spot?platform=api";
+    private static final String SPOT_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/public/spot?platform=api&version=v2";
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -50,11 +50,13 @@ public class PublicWSMain {
             // ExchangeID: DeepCoin
             // InstrumentID: e.g. BTCUSDT / BCHUSDT
             // Period: 1m, 5m, 15m, 30m, 1h, 4h, 12h, 1d, 1w, 1o, 1y
-            String exchangeID = "DeepCoin";
             String instrumentId = "BTCUSDT";
             String period = "1m"; // 1 minute
-            String filterValue = exchangeID + "_" + instrumentId + "_" + period;
-            String topicID = "2"; // 2: 成交明细 (trade details)
+            String filterValue = instrumentId+ "_" + period;
+            String topicID = "kline"; // 2: 成交明细 (trade details)
+
+            //SendTopicAction": {"Action": "1", "FilterValue": "DeepCoin_BTCUSDT", "LocalNo": 111, "ResumeNo": -1, "TopicID": "2"
+
 
             System.out.println("Subscribing to trade details:");
             System.out.println("  FilterValue: " + filterValue);

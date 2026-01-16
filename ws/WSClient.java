@@ -83,15 +83,11 @@ public class WSClient extends WebSocketClient {
     private String buildJsonMessage(String action, String filterValue, int localNo, int resumeNo, String topicID) {
         SendTopicAction inner = new SendTopicAction();
         inner.Action = action;
-        inner.FilterValue = filterValue;
+        inner.Symbol = filterValue;
         inner.LocalNo = localNo;
         inner.ResumeNo = resumeNo;
-        inner.TopicID = topicID;
-
-        SendTopicActionWrapper wrapper = new SendTopicActionWrapper();
-        wrapper.SendTopicAction = inner;
-
-        return GSON.toJson(wrapper);
+        inner.Topic = topicID;
+        return GSON.toJson(inner);
     }
 
     /**
@@ -116,10 +112,10 @@ public class WSClient extends WebSocketClient {
      */
     private static class SendTopicAction {
         String Action;
-        String FilterValue;
+        String Symbol;
         int LocalNo;
         int ResumeNo;
-        String TopicID;
+        String Topic;
     }
 
     /**
