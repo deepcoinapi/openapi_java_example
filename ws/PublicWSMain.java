@@ -53,7 +53,7 @@ public class PublicWSMain {
             String instrumentId = "BTCUSDT";
             String period = "0.1"; // 1 minute
             String filterValue = instrumentId+ "_" + period;
-            String topicID = "book25"; // 2: 成交明细 (trade details)
+            String topicID = "liquidationOrder"; // 2: 成交明细 (trade details)
 
             //SendTopicAction": {"Action": "1", "FilterValue": "DeepCoin_BTCUSDT", "LocalNo": 111, "ResumeNo": -1, "TopicID": "2"
 
