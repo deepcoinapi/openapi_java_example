@@ -7,9 +7,9 @@
 public class PublicWSMain {
 
     // 合约WebSocket地址
-    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/public/swap?platform=api";
+    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/swap?platform=api";
     // 现货WebSocket地址
-    private static final String SPOT_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/public/spot?platform=api";
+    private static final String SPOT_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/spot?platform=api";
 
     public static void main(String[] args) {
         if (args.length < 1) {
