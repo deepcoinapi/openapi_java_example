@@ -7,7 +7,7 @@
 public class PublicWSMain {
 
     // 合约WebSocket地址
-    private static final String SWAP_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/open/swap?platform=api&version=v2";
+    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/swap?platform=api&version=v2";
     // 现货WebSocket地址
     private static final String SPOT_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/open/spot?platform=api&version=v2";
 
@@ -51,9 +51,9 @@ public class PublicWSMain {
             // InstrumentID: e.g. BTCUSDT / BCHUSDT
             // Period: 1m, 5m, 15m, 30m, 1h, 4h, 12h, 1d, 1w, 1o, 1y
             String instrumentId = "BTCUSDT";
-            String period = "0.1"; // 1 minute
+            String period = "1m"; // 1 minute
             String filterValue = instrumentId+ "_" + period;
-            String topicID = "liquidationOrder"; // 2: 成交明细 (trade details)
+            String topicID = "kline"; // 2: 成交明细 (trade details)
 
             //SendTopicAction": {"Action": "1", "FilterValue": "DeepCoin_BTCUSDT", "LocalNo": 111, "ResumeNo": -1, "TopicID": "2"
 
