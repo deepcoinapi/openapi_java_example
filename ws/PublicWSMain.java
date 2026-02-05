@@ -7,9 +7,9 @@
 public class PublicWSMain {
 
     // 合约WebSocket地址
-    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/swap?platform=api";
+    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/public/swap?platform=api";
     // 现货WebSocket地址
-    private static final String SPOT_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/spot?platform=api";
+    private static final String SPOT_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/public/spot?platform=api";
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -52,9 +52,8 @@ public class PublicWSMain {
             // Period: 1m, 5m, 15m, 30m, 1h, 4h, 12h, 1d, 1w, 1o, 1y
             String exchangeID = "DeepCoin";
             String instrumentId = "BTCUSDT";
-            String period = "1m"; // 1 minute
-            String filterValue = exchangeID + "_" + instrumentId + "_" + period;
-            String topicID = "2"; // 2: 成交明细 (trade details)
+            String filterValue = exchangeID + "_" + instrumentId;
+            String topicID = "7"; // 2: 成交明细 (trade details)
 
             System.out.println("Subscribing to trade details:");
             System.out.println("  FilterValue: " + filterValue);
