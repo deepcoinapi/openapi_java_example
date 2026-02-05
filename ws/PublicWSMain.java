@@ -52,8 +52,9 @@ public class PublicWSMain {
             // Period: 1m, 5m, 15m, 30m, 1h, 4h, 12h, 1d, 1w, 1o, 1y
             String exchangeID = "DeepCoin";
             String instrumentId = "BTCUSDT";
-            String filterValue = exchangeID + "_" + instrumentId;
-            String topicID = "7"; // 2: 成交明细 (trade details)
+            String period = "1m"; // 1 minute
+            String filterValue = exchangeID + "_" + instrumentId + "_" + period;
+            String topicID = "2"; // 2: 成交明细 (trade details)
 
             System.out.println("Subscribing to trade details:");
             System.out.println("  FilterValue: " + filterValue);
