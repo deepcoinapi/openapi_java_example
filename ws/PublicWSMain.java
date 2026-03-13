@@ -1,13 +1,13 @@
 /**
  * Public WebSocket Example Main
- * 
+ * <p>
  * 订阅公有行情WebSocket示例
  * 参考文档: https://www.deepcoin.com/docs/zh/publicWS/public
  */
 public class PublicWSMain {
 
     // 合约WebSocket地址
-    private static final String SWAP_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/swap?platform=api&version=v2";
+    private static final String SWAP_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/open/swap?platform=api&version=v2";
     // 现货WebSocket地址
     private static final String SPOT_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/open/spot?platform=api&version=v2";
 
@@ -44,24 +44,16 @@ public class PublicWSMain {
             // Wait a bit for connection to establish
             Thread.sleep(1000);
 
-            // Example: Subscribe to trade details (成交明细)
-            // FilterValue format (see docs): $ExchangeID_$InstrumentID_$Period
-            // e.g. DeepCoin_BTCUSDT_1m
-            // ExchangeID: DeepCoin
-            // InstrumentID: e.g. BTCUSDT / BCHUSDT
-            // Period: 1m, 5m, 15m, 30m, 1h, 4h, 12h, 1d, 1w, 1o, 1y
-            String instrumentId = "BTCUSDT";
-            String period = "1m"; // 1 minute
-            String filterValue = instrumentId+ "_" + period;
-            String topicID = "kline"; // 2: 成交明细 (trade details)
+            WSClient.SendTopicAction inner = new WSClient.SendTopicAction();
+            inner.Action = "1";
+            inner.Symbol = "ETHUSDT";
+            inner.LocalNo = 111;
+            inner.Count = 1;
+            inner.Topic = "book25";
+            inner.PeriodID = "4h";
+            inner.Timezone = "UTC";
 
-            //SendTopicAction": {"Action": "1", "FilterValue": "DeepCoin_BTCUSDT", "LocalNo": 111, "ResumeNo": -1, "TopicID": "2"
-
-
-            System.out.println("Subscribing to trade details:");
-            System.out.println("  FilterValue: " + filterValue);
-            System.out.println("  TopicID: " + topicID);
-            client.subscribe(filterValue, topicID, -1); // -1: resume from server's latest position
+            client.subscribe(inner); // -1: resume from server's latest position
             System.out.println("WebSocket connection established. Waiting for messages...");
             // Keep the main thread running
             Thread.currentThread().join();

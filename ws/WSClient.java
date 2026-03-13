@@ -85,7 +85,7 @@ public class WSClient extends WebSocketClient {
         inner.Action = action;
         inner.Symbol = filterValue;
         inner.LocalNo = localNo;
-        inner.ResumeNo = resumeNo;
+        inner.Count = resumeNo;
         inner.Topic = topicID;
         return GSON.toJson(inner);
     }
@@ -110,24 +110,25 @@ public class WSClient extends WebSocketClient {
      * Inner object containing subscription parameters.
      * Field names keep the same case as API docs.
      */
-    private static class SendTopicAction {
+    public static class SendTopicAction {
         String Action;
         String Symbol;
         int LocalNo;
-        int ResumeNo;
+        int Count;
         String Topic;
+        String Timezone;
+        String PeriodID;
     }
 
     /**
      * Subscribe to a topic
-     * @param filterValue Format: $ExchangeID_$InstrumentID_$Period (e.g., "DEEPCOIN_BTC-USDT-SWAP_1m")
-     * @param topicID Topic ID (e.g., "2" for trade details/成交明细)
-     * @param resumeNo 0: start from beginning, -1: resume from server's latest position
+     * @param inner Format: $ExchangeID_$InstrumentID_$Period (e.g., "DEEPCOIN_BTC-USDT-SWAP_1m")
      * @return LocalNo for this subscription
      */
-    public int subscribe(String filterValue, String topicID, int resumeNo) {
+    public int subscribe(SendTopicAction inner) {
         int localNo = localNoCounter++;
-        String message = buildJsonMessage("1", filterValue, localNo, resumeNo, topicID);
+        String message = GSON.toJson(inner);
+        //send("{\"target\":\"kline\",\"action\":\"subscribe\",\"instrumentID\":\"ETHUSDT\",\"periodID\":\"4h\",\"localID\":1,\"count\":10}");
         send(message);
         System.out.println("Sent subscribe: " + message);
         return localNo;
