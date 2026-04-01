@@ -49,9 +49,9 @@ public class PublicWSMain {
             inner.Symbol = "ETHUSDT";
             inner.LocalNo = 111;
             inner.Count = 1;
-            inner.Topic = "book25";
-            inner.PeriodID = "4h";
-            inner.Timezone = "UTC";
+            inner.Topic = "kline";
+            inner.PeriodID = "5m";
+            //inner.Timezone = "UTC";
 
             client.subscribe(inner); // -1: resume from server's latest position
             System.out.println("WebSocket connection established. Waiting for messages...");
