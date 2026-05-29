@@ -6,10 +6,10 @@
  */
 public class PublicWSMain {
 
-    // 合约WebSocket地址
-    private static final String SWAP_WS_URL = "wss://test-wss.goodtest.cc/streamlet/trade/open/swap?platform=api&version=v2";
-    // 现货WebSocket地址
-    private static final String SPOT_WS_URL = "wss://stream.deepcoin.com/streamlet/trade/open/spot?platform=api&version=v2";
+    // 合约WebSocket地址wss://test-wss.goodtest.cc/；wss://test-wss.devopsdc.click
+    private static final String SWAP_WS_URL = "wss://test-wss.devopsdc.click/streamlet/trade/public/swap?platform=api&version=v2";
+    // 现货WebSocket地址wss://stream.deepcoin.com/
+    private static final String SPOT_WS_URL = "wss://test-wss.devopsdc.click/streamlet/trade/public/spot?platform=api&version=v2";
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -46,10 +46,10 @@ public class PublicWSMain {
 
             WSClient.SendTopicAction inner = new WSClient.SendTopicAction();
             inner.Action = "1";
-            inner.Symbol = "ETHUSDT";
-            inner.LocalNo = 111;
+            inner.Symbol = "BTCUSDT";
+            inner.LocalNo = 6;
             inner.Count = 1;
-            inner.Topic = "kline";
+            inner.Topic = "book25";
             inner.PeriodID = "5m";
             //inner.Timezone = "UTC";
 
